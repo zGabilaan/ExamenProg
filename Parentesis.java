@@ -51,69 +51,7 @@ public class Parentesis {
                (apertura == '{' && cierre == '}');
     }
 }
-ahora sube el txt
 
-Vale, esto que te paso ahora a mi me va perfecto, el archivo txt ponlo en la raiz del proyecto.
-Si no te va algo preguntame. Acuerdate de la ruta del archivo.
-
-import java.util.*;
-
-class Vehiculo {
-    String matricula;
-    String nombre;
-    List<Integer> precios;
-
-    public Vehiculo(String matricula, String nombre, List<Integer> precios) {
-        this.matricula = matricula;
-        this.nombre = nombre;
-        this.precios = precios;
-    }
-
-    public int getMaxPrecio() {
-        return precios.stream().max(Integer::compare).orElse(0);
-    }
-}
-
-
-Clase Maximas:
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-public class Maximas {
-    public static void main(String[] args) {
-        List<Vehiculo> vehiculos = new ArrayList<>();
-        String archivo = "reparaciones_vehiculos.txt";
-
-        try (Stream<String> stream = Files.lines(Paths.get(archivo))) {
-            vehiculos = stream.map(linea -> {
-                String[] partes = linea.split(",", 3);
-                String matricula = partes[0];
-                String nombre = partes[1];
-                List<Integer> precios = Arrays.stream(partes[2].split(","))
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList());
-                return new Vehiculo(matricula, nombre, precios);
-            }).collect(Collectors.toList());
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
-            return;
-        }
-
-        Map<String, Integer> maximos = vehiculos.stream()
-                .collect(Collectors.toMap(v -> v.nombre, Vehiculo::getMaxPrecio, Integer::max));
-
-        maximos.forEach((nombre, maxPrecio) -> {
-            System.out.println(nombre + ": " + maxPrecio);
-        });
-    }
-}
 
 
 
