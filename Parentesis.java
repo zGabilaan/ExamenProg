@@ -51,6 +51,4 @@ public class Parentesis {
                (apertura == '{' && cierre == '}');
     }
 }
-serlonz hola gg
-Aaaaaaaaaaaaaaaaaaaaaaaa
-    Entiendo
+ahora sube el txt
